@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Autres – Mathis Sananes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Autres projets de Mathis Sananes : théâtre, photographies et making-of.">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #000000;
+      --muted: #666666;
+      --max: 1280px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background: #ffffff;
+      z-index: 50;
+      border-bottom: 1px solid #ddd;
+    }
+    .nav {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1rem;
+    }
+    .brand {
+      display: inline-block;
+      line-height: 1;
+    }
+    .brand-name {
+      font-weight: 600;
+      letter-spacing: .02em;
+      font-size: 1.05rem;
+    }
+    .subtitle {
+      margin-top: 1px;
+      font-size: 0.50rem;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 1.25rem;
+      font-size: .9rem;
+    }
+    nav a:hover {
+      color: var(--text);
+    }
+
+    main {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 5.5rem 1rem 4rem;
+    }
+
+    /* Bloc projet type vidéo */
+    .project {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+      align-items: flex-start;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 4rem;
+      margin-bottom: 4rem;
+    }
+
+    .project-poster {
+      flex: 0 0 435px;
+      max-width: 435px;
+      border: 1px solid #ddd;
+      border-radius: .4rem;
+      background: #f3f3f3;
+      object-fit: cover;
+      align-self: flex-start;
+    }
+
+    .project-content {
+      flex: 1 1 600px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .project-title {
+      font-size: 1.8rem;
+      font-weight: 500;
+      margin-bottom: .3rem;
+    }
+
+    .project-title span.year {
+      font-weight: 400;
+      color: #777;
+      font-size: 1rem;
+    }
+
+    .project-type {
+      font-size: .9rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--muted);
+      margin-bottom: 1.8rem;
+    }
+
+    /* 4 screenshots en grand */
+    .screenshots-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, auto);
+      gap: 1.4rem;
+    }
+
+    .screenshots-grid img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      border-radius: .4rem;
+      border: 1px solid #ccc;
+      background: #f3f3f3;
+      cursor: pointer;
+      transition: transform .15s ease-out;
+    }
+
+    .screenshots-grid img:hover {
+      transform: scale(1.02);
+    }
+
+    /* Titres sections */
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 500;
+      margin: 3rem 0 1.8rem;
+      color: var(--text);
+    }
+
+    /* Photos – paysage */
+    .photos-grid,
+    .makingof-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .photos-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .makingof-grid {
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: auto;
+    }
+
+    .photos-grid img,
+    .makingof-grid img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      border-radius: .4rem;
+      border: 1px solid #ccc;
+      background: #f3f3f3;
+      cursor: pointer;
+      transition: transform .15s ease-out;
+    }
+
+    .photos-grid img:hover,
+    .makingof-grid img:hover {
+      transform: scale(1.02);
+    }
+
+    /* Overlay */
+    .image-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      padding: 1.5rem;
+    }
+    .image-overlay.active {
+      display: flex;
+    }
+    .image-overlay img {
+      max-width: min(90vw, 1100px);
+      max-height: 90vh;
+      border-radius: .6rem;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+      background: #000;
+    }
+    .overlay-close {
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      border: none;
+      border-radius: 9999px;
+      width: 34px;
+      height: 34px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+
+    footer {
+      margin-top: 4rem;
+      padding: 2rem 1rem 3rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: .8rem;
+      border-top: 1px solid #ddd;
+    }
+
+    @media (max-width: 900px) {
+      .project {
+        flex-direction: column;
+        align-items: center;
+      }
+      .photos-grid,
+      .makingof-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 520px) {
+      .photos-grid,
+      .makingof-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <div class="brand-name">Mathis Sananes</div>
+        <div class="subtitle">réalisateur · scénariste · monteur</div>
+      </div>
+      <nav>
+        <a href="index.html">Accueil</a>
+        <a href="videos.html">Vidéos</a>
+        <a href="autres.html">Autres</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Le Roi se meurt -->
+    <article class="project">
+      <img src="le-roi-se-meurt-affiche.jpg" alt="" class="project-poster">
+
+      <div class="project-content">
+        <h1 class="project-title">
+          Le Roi se meurt <span class="year">(2023)</span>
+        </h1>
+        <div class="project-type">pièce de théâtre</div>
+
+        <div class="screenshots-grid">
+          <img src="le-roi-se-meurt-shot-1.jpg" alt="">
+          <img src="le-roi-se-meurt-shot-2.jpg" alt="">
+          <img src="le-roi-se-meurt-shot-3.jpg" alt="">
+          <img src="le-roi-se-meurt-shot-4.jpg" alt="">
+        </div>
+      </div>
+    </article>
+
+    <!-- Photographies -->
+    <section class="photos-section">
+      <h2 class="section-title">Photographies</h2>
+
+      <div class="photos-grid">
+        <img src="photo-1.jpg" alt="">
+        <img src="photo-2.jpg" alt="">
+        <img src="photo-3.jpg" alt="">
+        <img src="photo-4.jpg" alt="">
+      </div>
+    </section>
+
+    <!-- Making Of -->
+    <section class="makingof-section">
+      <h2 class="section-title">Making Of</h2>
+
+      <div class="makingof-grid">
+        <img src="makingof-1.jpg" alt="">
+        <img src="makingof-2.jpg" alt="">
+        <img src="makingof-3.jpg" alt="">
+        <img src="makingof-4.jpg" alt="">
+        <img src="makingof-5.jpg" alt="">
+        <img src="makingof-6.jpg" alt="">
+        <img src="makingof-7.jpg" alt="">
+        <img src="makingof-8.jpg" alt="">
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Overlay -->
+  <div class="image-overlay" id="imageOverlay">
+    <button class="overlay-close" id="overlayClose">×</button>
+    <img id="overlayImg" src="" alt="">
+  </div>
+
+  <footer>
+    © 2025 Mathis Sananes. Tous droits réservés.
+  </footer>
+
+  <script>
+    const zoomables = document.querySelectorAll('.screenshots-grid img, .photos-grid img, .makingof-grid img');
+    const overlay = document.getElementById('imageOverlay');
+    const overlayImg = document.getElementById('overlayImg');
+    const closeBtn = document.getElementById('overlayClose');
+
+    zoomables.forEach(img => {
+      img.addEventListener('click', () => {
+        overlayImg.src = img.src;
+        overlay.classList.add('active');
+      });
+    });
+
+    overlay.addEventListener('click', e => {
+      if (e.target === overlay || e.target === closeBtn) {
+        overlay.classList.remove('active');
+        overlayImg.src = '';
+      }
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        overlay.classList.remove('active');
+        overlayImg.src = '';
+      }
+    });
+  </script>
+</body>
+</html>

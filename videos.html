@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Vidéos – Mathis Sananes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Vidéos de Mathis Sananes. Courts métrages et clips.">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #000000;
+      --muted: #666666;
+      --max: 1280px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      background: #ffffff;
+      z-index: 50;
+      border-bottom: 1px solid #ddd;
+    }
+    .nav {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1rem;
+    }
+    .brand {
+      display: inline-block;
+      line-height: 1;
+    }
+    .brand-name {
+      font-weight: 600;
+      letter-spacing: .02em;
+      font-size: 1.05rem;
+    }
+    .subtitle {
+      margin-top: 1px;
+      font-size: 0.50rem;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 1.25rem;
+      font-size: .9rem;
+    }
+    nav a:hover {
+      color: var(--text);
+    }
+
+    main {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 5.5rem 1rem 4rem;
+    }
+
+    .project {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+      align-items: flex-start;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 4rem;
+      margin-bottom: 4rem;
+    }
+
+    .project-poster {
+      flex: 0 0 435px;
+      max-width: 435px;
+      border: 1px solid #ddd;
+      border-radius: .4rem;
+      background: #f3f3f3;
+      object-fit: cover;
+      align-self: flex-start;
+    }
+
+    .project-content {
+      flex: 1 1 600px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .project-title {
+      font-size: 1.8rem;
+      font-weight: 500;
+      margin-bottom: .4rem;
+    }
+
+    .project-title span.year {
+      font-weight: 400;
+      color: #777;
+      font-size: 1.1rem;
+    }
+
+    .project-type {
+      font-size: .9rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--muted);
+      margin-bottom: 1.6rem;
+      display: flex;
+      gap: .6rem;
+      align-items: center;
+    }
+
+    .play-btn {
+      background: #000;
+      color: #fff;
+      border: none;
+      border-radius: 9999px;
+      padding: .28rem .75rem .3rem;
+      font-size: .65rem;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      cursor: pointer;
+    }
+    .play-btn:hover {
+      opacity: 0.85;
+    }
+
+    .screenshots-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, auto);
+      gap: 1.2rem;
+      align-content: start;
+    }
+
+    .screenshots-grid img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      border: 1px solid #ccc;
+      border-radius: .4rem;
+      background: #f3f3f3;
+      cursor: pointer;
+      transition: transform .15s ease-out;
+    }
+    .screenshots-grid img:hover {
+      transform: scale(1.01);
+    }
+
+    .image-overlay,
+    .video-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      padding: 1.5rem;
+    }
+    .image-overlay.active,
+    .video-overlay.active {
+      display: flex;
+    }
+    .image-overlay img {
+      max-width: min(90vw, 1100px);
+      max-height: 90vh;
+      border-radius: .6rem;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+      background: #000;
+    }
+    .video-overlay iframe {
+      width: min(90vw, 1100px);
+      height: min(50.625vw, 70vh);
+      border: 0;
+      border-radius: .6rem;
+      background: #000;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+    }
+    .overlay-close {
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      border: none;
+      border-radius: 9999px;
+      width: 34px;
+      height: 34px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+
+    footer {
+      margin-top: 4rem;
+      padding: 2rem 1rem 3rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: .8rem;
+      border-top: 1px solid #ddd;
+    }
+
+    @media (max-width: 1100px) {
+      .project {
+        flex-direction: column;
+        align-items: center;
+      }
+      .project-poster {
+        max-width: 100%;
+        width: 100%;
+      }
+      .project-content {
+        width: 100%;
+      }
+      .screenshots-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .video-overlay iframe {
+        width: 95vw;
+        height: 53.43vw;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <div class="brand-name">Mathis Sananes</div>
+        <div class="subtitle">réalisateur · scénariste · monteur</div>
+      </div>
+      <nav>
+        <a href="index.html">Accueil</a>
+        <a href="videos.html">Vidéos</a>
+        <a href="autres.html">Autres</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- 1 : Vieux Jeu -->
+    <article class="project">
+      <img src="vieux-jeu-affiche.jpg" alt="Affiche du court métrage Vieux Jeu" class="project-poster">
+      <div class="project-content">
+        <h2 class="project-title">Vieux Jeu <span class="year">(2025)</span></h2>
+        <div class="project-type">court métrage</div>
+        <div class="screenshots-grid">
+          <img src="vieux-jeu-shot-1.jpg" alt="">
+          <img src="vieux-jeu-shot-2.jpg" alt="">
+          <img src="vieux-jeu-shot-3.jpg" alt="">
+          <img src="vieux-jeu-shot-4.jpg" alt="">
+          <img src="vieux-jeu-shot-5.jpg" alt="">
+          <img src="vieux-jeu-shot-6.jpg" alt="">
+          <img src="vieux-jeu-shot-7.jpg" alt="">
+          <img src="vieux-jeu-shot-8.jpg" alt="">
+          <img src="vieux-jeu-shot-9.jpg" alt="">
+        </div>
+      </div>
+    </article>
+
+    <!-- 2 : Laisse Couler -->
+    <article class="project">
+      <img src="laisse-couler-affiche.jpg" alt="Affiche du clip Laisse Couler" class="project-poster">
+      <div class="project-content">
+        <h2 class="project-title">Laisse Couler <span class="year">(2025)</span></h2>
+        <div class="project-type">
+          clip
+          <button class="play-btn" data-video="https://www.youtube.com/embed/PFfzyw06-oM">Play</button>
+        </div>
+        <div class="screenshots-grid">
+          <img src="laisse-couler-shot-1.jpg" alt="">
+          <img src="laisse-couler-shot-2.jpg" alt="">
+          <img src="laisse-couler-shot-3.jpg" alt="">
+          <img src="laisse-couler-shot-4.jpg" alt="">
+          <img src="laisse-couler-shot-5.jpg" alt="">
+          <img src="laisse-couler-shot-6.jpg" alt="">
+          <img src="laisse-couler-shot-7.jpg" alt="">
+          <img src="laisse-couler-shot-8.jpg" alt="">
+          <img src="laisse-couler-shot-9.jpg" alt="">
+        </div>
+      </div>
+    </article>
+
+    <!-- 3 : She Cut a Rug -->
+    <article class="project">
+      <img src="she-cut-a-rug-affiche.jpg" alt="Affiche du clip She Cut a Rug" class="project-poster">
+      <div class="project-content">
+        <h2 class="project-title">She Cut a Rug <span class="year">(2025)</span></h2>
+        <div class="project-type">
+          clip
+          <button class="play-btn" data-video="https://www.youtube.com/embed/pcbTMebtJgI">Play</button>
+        </div>
+        <div class="screenshots-grid">
+          <img src="she-cut-a-rug-shot-1.jpg" alt="">
+          <img src="she-cut-a-rug-shot-2.jpg" alt="">
+          <img src="she-cut-a-rug-shot-3.jpg" alt="">
+          <img src="she-cut-a-rug-shot-4.jpg" alt="">
+          <img src="she-cut-a-rug-shot-5.jpg" alt="">
+          <img src="she-cut-a-rug-shot-6.jpg" alt="">
+          <img src="she-cut-a-rug-shot-7.jpg" alt="">
+          <img src="she-cut-a-rug-shot-8.jpg" alt="">
+          <img src="she-cut-a-rug-shot-9.jpg" alt="">
+        </div>
+      </div>
+    </article>
+
+    <!-- 4 : 0,25mg -->
+    <article class="project">
+      <img src="0-25mg-affiche.jpg" alt="Affiche du court métrage 0,25mg" class="project-poster">
+      <div class="project-content">
+        <h2 class="project-title">0,25mg <span class="year">(2025)</span></h2>
+        <div class="project-type">court métrage</div>
+        <div class="screenshots-grid">
+          <img src="0-25mg-shot-1.jpg" alt="">
+          <img src="0-25mg-shot-2.jpg" alt="">
+          <img src="0-25mg-shot-3.jpg" alt="">
+          <img src="0-25mg-shot-4.jpg" alt="">
+          <img src="0-25mg-shot-5.jpg" alt="">
+          <img src="0-25mg-shot-6.jpg" alt="">
+          <img src="0-25mg-shot-7.jpg" alt="">
+          <img src="0-25mg-shot-8.jpg" alt="">
+          <img src="0-25mg-shot-9.jpg" alt="">
+        </div>
+      </div>
+    </article>
+
+    <!-- 5 : About Emma -->
+    <article class="project">
+      <img src="about-emma-affiche.jpg" alt="Affiche du court métrage About Emma" class="project-poster">
+      <div class="project-content">
+        <h2 class="project-title">About Emma <span class="year">(2019)</span></h2>
+        <div class="project-type">court métrage</div>
+        <div class="screenshots-grid">
+          <img src="about-emma-shot-1.jpg" alt="">
+          <img src="about-emma-shot-2.jpg" alt="">
+          <img src="about-emma-shot-3.jpg" alt="">
+          <img src="about-emma-shot-4.jpg" alt="">
+          <img src="about-emma-shot-5.jpg" alt="">
+          <img src="about-emma-shot-6.jpg" alt="">
+          <img src="about-emma-shot-7.jpg" alt="">
+          <img src="about-emma-shot-8.jpg" alt="">
+          <img src="about-emma-shot-9.jpg" alt="">
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <div class="image-overlay" id="imageOverlay">
+    <button class="overlay-close" id="overlayCloseImg" aria-label="Fermer">×</button>
+    <img id="overlayImg" src="" alt="capture agrandie">
+  </div>
+
+  <div class="video-overlay" id="videoOverlay">
+    <button class="overlay-close" id="overlayCloseVideo" aria-label="Fermer">×</button>
+    <iframe id="videoFrame" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </div>
+
+  <footer>
+    © 2025 Mathis Sananes. Tous droits réservés.
+  </footer>
+
+  <script>
+    // Images
+    const screenshots = document.querySelectorAll('.screenshots-grid img');
+    const imageOverlay = document.getElementById('imageOverlay');
+    const overlayImg = document.getElementById('overlayImg');
+    const overlayCloseImg = document.getElementById('overlayCloseImg');
+
+    screenshots.forEach(img => {
+      img.addEventListener('click', () => {
+        overlayImg.src = img.src;
+        imageOverlay.classList.add('active');
+      });
+    });
+
+    imageOverlay.addEventListener('click', (e) => {
+      if (e.target === imageOverlay || e.target === overlayCloseImg) {
+        imageOverlay.classList.remove('active');
+        overlayImg.src = '';
+      }
+    });
+
+    // Vidéos
+    const videoOverlay = document.getElementById('videoOverlay');
+    const videoFrame = document.getElementById('videoFrame');
+    const overlayCloseVideo = document.getElementById('overlayCloseVideo');
+    const playButtons = document.querySelectorAll('.play-btn');
+
+    playButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const url = btn.getAttribute('data-video');
+        videoFrame.src = url + '?autoplay=1';
+        videoOverlay.classList.add('active');
+      });
+    });
+
+    videoOverlay.addEventListener('click', (e) => {
+      if (e.target === videoOverlay || e.target === overlayCloseVideo) {
+        videoOverlay.classList.remove('active');
+        videoFrame.src = '';
+      }
+    });
+
+    // ESC ferme tout
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        imageOverlay.classList.remove('active');
+        overlayImg.src = '';
+        videoOverlay.classList.remove('active');
+        videoFrame.src = '';
+      }
+    });
+  </script>
+</body>
+</html>

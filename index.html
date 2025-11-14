@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Mathis Sananes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Portfolio de Mathis Sananes. Showreel et sélection de travaux.">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #000000;
+      --muted: #666666;
+      --max: 1080px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      background: #ffffff;
+      z-index: 50;
+      border-bottom: 1px solid #ddd;
+    }
+    .nav {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1rem;
+    }
+    .brand {
+      display: inline-block;
+      line-height: 1;
+    }
+    .brand-name {
+      font-weight: 600;
+      letter-spacing: .02em;
+      font-size: 1.05rem;
+    }
+    .subtitle {
+      margin-top: 1px;
+      font-size: 0.50rem;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 1.25rem;
+      font-size: .9rem;
+    }
+    nav a:hover {
+      color: var(--text);
+    }
+    main {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 5rem 1rem 4rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 1080px;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      border-radius: .6rem;
+      border: 1px solid #ddd;
+      background: #000;
+    }
+    .video-wrapper video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    footer {
+      margin-top: 4rem;
+      padding: 2rem 1rem 3rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: .8rem;
+      border-top: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <div class="brand-name">Mathis Sananes</div>
+        <div class="subtitle">réalisateur · scénariste · monteur</div>
+      </div>
+      <nav>
+        <a href="index.html">Accueil</a>
+        <a href="videos.html">Vidéos</a>
+        <a href="autres.html">Autres</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="video-wrapper">
+      <video controls autoplay muted loop playsinline>
+        <source src="showreel.mp4" type="video/mp4">
+        Votre navigateur ne supporte pas la lecture vidéo.
+      </video>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 Mathis Sananes. Tous droits réservés.
+  </footer>
+</body>
+</html>

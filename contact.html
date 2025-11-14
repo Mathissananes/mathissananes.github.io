@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact – Mathis Sananes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Contact de Mathis Sananes : e-mail et Instagram.">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #000000;
+      --muted: #666666;
+      --max: 720px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background: #ffffff;
+      z-index: 50;
+      border-bottom: 1px solid #ddd;
+    }
+    .nav {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1rem;
+    }
+    .brand {
+      display: inline-block;
+      line-height: 1;
+    }
+    .brand-name {
+      font-weight: 600;
+      letter-spacing: .02em;
+      font-size: 1.05rem;
+    }
+    .subtitle {
+      margin-top: 1px;
+      font-size: 0.50rem;
+      color: #666666;
+      letter-spacing: 0.02em;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    nav a {
+      color: #666666;
+      text-decoration: none;
+      margin-left: 1.25rem;
+      font-size: .9rem;
+    }
+    nav a:hover {
+      color: var(--text);
+    }
+
+    main {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 5.5rem 1rem 4rem;
+      text-align: center;
+    }
+
+    .contact-title {
+      font-size: 1.8rem;
+      font-weight: 500;
+      margin-bottom: .5rem;
+    }
+    .contact-subtitle {
+      font-size: .95rem;
+      color: var(--muted);
+      margin-bottom: 3rem;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.2rem;
+    }
+
+    .contact-card {
+      border: 1px solid #dddddd;
+      border-radius: .8rem;
+      padding: 1.8rem 1.6rem;
+      text-align: left;
+    }
+
+    .contact-label {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .15em;
+      color: var(--muted);
+      margin-bottom: .5rem;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+    }
+
+    .contact-icon {
+      width: 18px;
+      height: 18px;
+      opacity: .75;
+    }
+
+    .contact-name {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: .3rem;
+      word-break: break-all;
+    }
+
+    .contact-actions {
+      margin-top: 1.1rem;
+    }
+
+    .btn-link {
+      display: inline-block;
+      padding: .45rem .9rem;
+      border-radius: 9999px;
+      border: 1px solid #000000;
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      text-decoration: none;
+      color: #000000;
+    }
+    .btn-link:hover {
+      background: #000000;
+      color: #ffffff;
+    }
+
+    footer {
+      margin-top: 4rem;
+      padding: 2rem 1rem 3rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: .8rem;
+      border-top: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <div class="brand-name">Mathis Sananes</div>
+        <div class="subtitle">réalisateur · scénariste · monteur</div>
+      </div>
+      <nav>
+        <a href="index.html">Accueil</a>
+        <a href="videos.html">Vidéos</a>
+        <a href="autres.html">Autres</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h1 class="contact-title">Contact</h1>
+    <p class="contact-subtitle">
+      Pour toute prise de contact, les infos sont juste ici.
+    </p>
+
+    <div class="contact-grid">
+
+      <!-- Instagram -->
+      <section class="contact-card">
+        <div class="contact-label">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="2" width="20" height="20" rx="5"></rect>
+            <circle cx="12" cy="12" r="4"></circle>
+            <circle cx="17.5" cy="6.5" r="1.2"></circle>
+          </svg>
+          Instagram
+        </div>
+
+        <div class="contact-name">@mathissananes</div>
+
+        <div class="contact-actions">
+          <a
+            class="btn-link"
+            href="https://www.instagram.com/mathissananes/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Ouvrir Instagram
+          </a>
+        </div>
+      </section>
+
+      <!-- Email -->
+      <section class="contact-card">
+        <div class="contact-label">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16v16H4z"></path>
+            <path d="m4 4 8 8 8-8"></path>
+          </svg>
+          E-mail
+        </div>
+
+        <div class="contact-name">mathis.s@live.fr</div>
+
+        <div class="contact-actions">
+          <a class="btn-link" href="mailto:mathis.s@live.fr">
+            Écrire un mail
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    © 2025 Mathis Sananes. Tous droits réservés.
+  </footer>
+
+</body>
+</html>
